@@ -54,8 +54,11 @@ function handle_board($method) {
 }
 
 function handle_piece($method, $x,$y,$input) {
-    print("x=$x, y=$y");
-    print_r($input);
+	if($method=='GET') {
+		show_piece($x,$y);
+	} else if ($method=='PUT') {
+		move_piece($x,$y,$input['x'],$input['y'], $input['token']);
+	}    
 }
 
 function handle_player($method, $p,$input) {
