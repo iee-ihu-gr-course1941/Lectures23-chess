@@ -126,6 +126,28 @@ function add_valid_moves_to_piece(&$board,$b,$x,$y) {
 
 
 function king_moves(&$board,$b,$x,$y) {
+
+	$directions = [
+		[1,0],
+		[-1,0],
+		[0,1],
+		[0,-1],
+		[1,1],
+		[-1,1],
+		[1,-1],
+		[-1,-1]
+	];	
+	$moves=[];
+	foreach($directions as $d=>$direction) {
+		$i=$x+$direction[0];
+		$j=$y+$direction[1];
+		if ( $i>=1 && $i<=8 && $j>=1 && $j<=8 && $board[$i][$j]['piece_color'] != $b) {
+			$move=['x'=>$i, 'y'=>$j];
+			$moves[]=$move;
+		}
+	}
+	$board[$x][$y]['moves'] = $moves;
+	return(sizeof($moves));
 	return(0);
 }
 function queen_moves(&$board,$b,$x,$y) {
